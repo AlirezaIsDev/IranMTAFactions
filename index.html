@@ -124,19 +124,22 @@
             width: 60px;
             height: 60px;
             margin-bottom: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .faction-section:hover .faction-logo {
             transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .faction-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .faction-section-title {
@@ -183,7 +186,8 @@
         }
 
         .faction-news-reporter {
-            background: linear-gradient(135deg, rgba(245, 245, 220, 0.7), rgba(245, 245, 220, 0.9));
+            background: linear-gradient(135deg, rgba(244, 141, 89, 0.7), rgba(244, 141, 89, 0.9));
+            border: 1px solid rgba(244, 141, 89, 0.5);
         }
 
         .faction-mechanic {
@@ -191,11 +195,17 @@
         }
 
         .faction-news-reporter .faction-section-title {
-            color: #333;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .faction-news-reporter .faction-section-desc {
-            color: #555;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .faction-news-reporter:hover {
+            background: linear-gradient(135deg, rgba(244, 141, 89, 0.8), rgba(244, 141, 89, 1));
+            box-shadow: 0 12px 25px rgba(244, 141, 89, 0.3);
         }
 
         .construction-modal {
@@ -329,7 +339,7 @@
         <div class="faction-selection-body">
             <div class="faction-section faction-police-dept" id="policeDept">
                 <div class="faction-logo">
-                    <i class="fas fa-shield-alt"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/pd_logo.png.94cd3a5ace1f11a2b259cb1967481ecc.png" alt="Police Department Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Police Department</h3>
                 <p class="faction-section-desc">Leader: FKurD</p>
@@ -337,7 +347,7 @@
         
             <div class="faction-section faction-police-fed" id="policeFed">
                 <div class="faction-logo">
-                    <i class="fas fa-balance-scale"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/fbi_logo.png.4344c4e3f642588c9ec5656b79625fe6.png" alt="Police Federal Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Police Federal</h3>
                 <p class="faction-section-desc">Leader: Ali_Sorena</p>
@@ -345,7 +355,7 @@
         
             <div class="faction-section faction-national-guard" id="nationalGuard">
                 <div class="faction-logo">
-                    <i class="fas fa-star"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/ng_logo.png.455266a2ddf0852bfd81fed527a4716c.png" alt="National Guard Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">National Guard</h3>
                 <p class="faction-section-desc">Leader: Behy</p>
@@ -353,7 +363,7 @@
         
             <div class="faction-section faction-medic" id="medic">
                 <div class="faction-logo">
-                    <i class="fas fa-ambulance"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/medic_logo.png.7bc027dc08651ef9f14e3838e641f4ef.png" alt="Medical Department Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Medical Department</h3>
                 <p class="faction-section-desc">Leader: Dr_Alireza</p>
@@ -361,7 +371,7 @@
         
             <div class="faction-section faction-hitman" id="hitman">
                 <div class="faction-logo">
-                    <i class="fas fa-skull"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2022_11/IMG_5227.PNG.c646af0ebcbb554aa30b30958e736919.PNG" alt="Hitman Agency Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Hitman Agency</h3>
                 <p class="faction-section-desc">Leader: parhamix</p>
@@ -369,7 +379,7 @@
         
             <div class="faction-section faction-school" id="school">
                 <div class="faction-logo">
-                    <i class="fas fa-graduation-cap"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/si_logo.png.62b281b47e83089436b1f75c7d295283.png" alt="School Instructor Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">School Instructor</h3>
                 <p class="faction-section-desc">Leader: Silvers</p>
@@ -377,7 +387,7 @@
         
             <div class="faction-section faction-taxi" id="taxi">
                 <div class="faction-logo">
-                    <i class="fas fa-taxi"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2025_06/taxi_logo.png.200f638df88fb0961d0d9a922419ba7f.png" alt="Taxi Company Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Taxi Company</h3>
                 <p class="faction-section-desc">Leader: iMani</p>
@@ -385,7 +395,7 @@
         
             <div class="faction-section faction-news-reporter" id="newsReporter">
                 <div class="faction-logo">
-                    <i class="fas fa-newspaper"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/nr_logo.png.6f537ee95e3f4f6de535157bf6f99865.png" alt="News Reporter Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">News Reporter</h3>
                 <p class="faction-section-desc">Leader: Rin</p>
@@ -393,7 +403,7 @@
 
             <div class="faction-section faction-mechanic" id="mechanic">
                 <div class="faction-logo">
-                    <i class="fas fa-wrench"></i>
+                    <img src="https://forum.iranmta.ir/uploads/monthly_2019_05/ttc_logo.png.64c144f8e83bb80e710d26ffb67857b1.png" alt="Mechanic Logo" class="faction-logo-img">
                 </div>
                 <h3 class="faction-section-title">Mechanic</h3>
                 <p class="faction-section-desc">Leader: Agha_Parsa</p>
