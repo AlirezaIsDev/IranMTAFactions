@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IranMTA | Factions</title>
+    <link rel="icon" type="image/png" href="https://iranmta.ir/images/arm.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Vazirmatn", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url('https://biaupload.com/do.php?imgf=org-25c396984de91.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .faction-selection-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            width: 95%;
+            max-width: 1200px;
+            height: 85%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        .faction-selection-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .faction-selection-title {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .faction-selection-body {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .faction-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .faction-section:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .faction-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .faction-section:hover .faction-logo {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .faction-section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .faction-section-desc {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .faction-police-dept {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.7), rgba(30, 60, 114, 0.9));
+        }
+
+        .faction-police-fed {
+            background: linear-gradient(135deg, rgba(25, 50, 100, 0.7), rgba(25, 50, 100, 0.9));
+        }
+
+        .faction-national-guard {
+            background: linear-gradient(135deg, rgba(20, 40, 80, 0.7), rgba(20, 40, 80, 0.9));
+        }
+
+        .faction-medic {
+            background: linear-gradient(135deg, rgba(255, 122, 0, 0.7), rgba(255, 122, 0, 0.9));
+        }
+
+        .faction-hitman {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0.9));
+        }
+
+        .faction-school {
+            background: linear-gradient(135deg, rgba(100, 200, 255, 0.7), rgba(100, 200, 255, 0.9));
+        }
+
+        .faction-taxi {
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.7), rgba(255, 204, 0, 0.9));
+        }
+
+        .faction-news-reporter {
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.7), rgba(245, 245, 220, 0.9));
+        }
+
+        .faction-news-reporter .faction-section-title {
+            color: #333;
+        }
+
+        .faction-news-reporter .faction-section-desc {
+            color: #555;
+        }
+
+        .construction-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .construction-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .construction-content {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .construction-modal.active .construction-content {
+            transform: scale(1);
+        }
+
+        .construction-icon {
+            font-size: 4rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .construction-title {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .construction-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .construction-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            background: #ff7b00;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+        }
+
+        .construction-btn:hover {
+            background: #e56a00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 106, 0, 0.5);
+        }
+
+        .faction-selection-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .faction-selection-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .faction-selection-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .faction-selection-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .faction-selection-body {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faction-selection-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .faction-selection-title {
+                font-size: 1.6rem;
+            }
+            
+            .faction-section {
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="faction-selection-content">
+        <div class="faction-selection-header">
+            <h2 class="faction-selection-title">لطفا فکشن خود را انتخاب کنید.</h2>
+        </div>
+        <div class="faction-selection-body">
+            <div class="faction-section faction-police-dept" id="policeDept">
+                <div class="faction-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="faction-section-title">Police Department</h3>
+                <p class="faction-section-desc">Leader: FKurD</p>
+            </div>
+        
+            <div class="faction-section faction-police-fed" id="policeFed">
+                <div class="faction-logo">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="faction-section-title">Police Federal</h3>
+                <p class="faction-section-desc">Leader: Ali_Sorena</p>
+            </div>
+        
+            <div class="faction-section faction-national-guard" id="nationalGuard">
+                <div class="faction-logo">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="faction-section-title">National Guard</h3>
+                <p class="faction-section-desc">Leader: Behy</p>
+            </div>
+        
+            <div class="faction-section faction-medic" id="medic">
+                <div class="faction-logo">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <h3 class="faction-section-title">Medical Department</h3>
+                <p class="faction-section-desc">Leader: Dr_Alireza</p>
+            </div>
+        
+            <div class="faction-section faction-hitman" id="hitman">
+                <div class="faction-logo">
+                    <i class="fas fa-skull"></i>
+                </div>
+                <h3 class="faction-section-title">Hitman Agency</h3>
+                <p class="faction-section-desc">Leader: parhamix</p>
+            </div>
+        
+            <div class="faction-section faction-school" id="school">
+                <div class="faction-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="faction-section-title">School Instructor</h3>
+                <p class="faction-section-desc">Leader: Silvers</p>
+            </div>
+        
+            <div class="faction-section faction-taxi" id="taxi">
+                <div class="faction-logo">
+                    <i class="fas fa-taxi"></i>
+                </div>
+                <h3 class="faction-section-title">Taxi Company</h3>
+                <p class="faction-section-desc">Leader: iMani</p>
+            </div>
+        
+            <div class="faction-section faction-news-reporter" id="newsReporter">
+                <div class="faction-logo">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h3 class="faction-section-title">News Reporter</h3>
+                <p class="faction-section-desc">Leader: Rin</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="construction-modal" id="constructionModal">
+        <div class="construction-content">
+            <div class="construction-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h2 class="construction-title">این قسمت در حال ساخت می‌باشد</h2>
+            <p class="construction-text">متأسفیم، این بخش هنوز آماده نیست. تیم توسعه در حال کار بر روی آن است.</p>
+            <button class="construction-btn" id="constructionBtn">بازگشت</button>
+        </div>
+    </div>
+
+    <script>
+        const constructionModal = document.getElementById('constructionModal');
+        const constructionBtn = document.getElementById('constructionBtn');
+        
+        const medic = document.getElementById('medic');
+        
+        medic.addEventListener('click', () => {
+            window.location.href = 'https://alirezaisdev.github.io/IranMTAMedic/';
+        });
+        
+        const otherFactions = [
+            document.getElementById('policeDept'),
+            document.getElementById('policeFed'),
+            document.getElementById('nationalGuard'),
+            document.getElementById('hitman'),
+            document.getElementById('school'),
+            document.getElementById('taxi'),
+            document.getElementById('newsReporter')
+        ];
+        
+        otherFactions.forEach(faction => {
+            faction.addEventListener('click', () => {
+                constructionModal.classList.add('active');
+            });
+        });
+        
+        constructionBtn.addEventListener('click', () => {
+            constructionModal.classList.remove('active');
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === constructionModal) {
+                constructionModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
