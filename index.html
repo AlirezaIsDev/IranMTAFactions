@@ -6,6 +6,7 @@
     <title>IranMTA | Factions</title>
     <link rel="icon" type="image/png" href="https://iranmta.ir/images/arm.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <style>
         * {
             margin: 0;
@@ -63,10 +64,29 @@
 
         .faction-selection-title {
             color: #fff;
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
+            letter-spacing: -0.5px;
+            line-height: 1.4;
+            background: linear-gradient(135deg, #ffffff, #e0f7fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .faction-selection-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 25%;
+            left: 25%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            border-radius: 2px;
         }
 
         .faction-selection-body {
@@ -164,6 +184,10 @@
 
         .faction-news-reporter {
             background: linear-gradient(135deg, rgba(245, 245, 220, 0.7), rgba(245, 245, 220, 0.9));
+        }
+
+        .faction-mechanic {
+            background: linear-gradient(135deg, rgba(128, 128, 128, 0.7), rgba(128, 128, 128, 0.9));
         }
 
         .faction-news-reporter .faction-section-title {
@@ -283,7 +307,7 @@
             }
             
             .faction-selection-title {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
             .faction-section {
@@ -300,7 +324,7 @@
 <body>
     <div class="faction-selection-content">
         <div class="faction-selection-header">
-            <h2 class="faction-selection-title">لطفا فکشن خود را انتخاب کنید.</h2>
+            <h2 class="faction-selection-title">لطفا فکشن خود را انتخاب کنید</h2>
         </div>
         <div class="faction-selection-body">
             <div class="faction-section faction-police-dept" id="policeDept">
@@ -366,6 +390,14 @@
                 <h3 class="faction-section-title">News Reporter</h3>
                 <p class="faction-section-desc">Leader: Rin</p>
             </div>
+
+            <div class="faction-section faction-mechanic" id="mechanic">
+                <div class="faction-logo">
+                    <i class="fas fa-wrench"></i>
+                </div>
+                <h3 class="faction-section-title">Mechanic</h3>
+                <p class="faction-section-desc">Leader: Agha_Parsa</p>
+            </div>
         </div>
     </div>
 
@@ -397,7 +429,8 @@
             document.getElementById('hitman'),
             document.getElementById('school'),
             document.getElementById('taxi'),
-            document.getElementById('newsReporter')
+            document.getElementById('newsReporter'),
+            document.getElementById('mechanic')
         ];
         
         otherFactions.forEach(faction => {
